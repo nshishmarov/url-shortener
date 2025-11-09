@@ -1,0 +1,9 @@
+mode: dev
+
+server:
+  port: 8080
+  timeout: 4s
+  iddle_timeout: 60s
+
+db:
+  dsn: "postgres://postgres:postgres@localhost:5432/postgres?sslmode=disable"
