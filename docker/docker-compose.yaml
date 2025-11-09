@@ -10,7 +10,7 @@ services:
     command: >
       sh -c "
       goose -dir /app/migrations postgres \"$$DSN\" up &&
-      /app/bin/url-shortener
+      /app/bin/shortener
       "
     depends_on:
       postgres_db:

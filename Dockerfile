@@ -9,7 +9,7 @@ RUN go mod download
 RUN go install github.com/pressly/goose/v3/cmd/goose@latest
 
 COPY . .
-RUN go build -o /app/bin/shortener /app/cmd/url-shortener
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /app/bin/shortener /app/cmd/url-shortener
 
 EXPOSE 8080
 
