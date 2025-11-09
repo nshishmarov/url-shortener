@@ -8,7 +8,7 @@ import (
 )
 
 type Storage struct {
-	db *sql.DB
+	DB *sql.DB
 	log *slog.Logger
 }
 
@@ -18,9 +18,9 @@ func NewStorage(config *config.Config, log *slog.Logger) (*Storage, error) {
 		return nil, err
 	}
 
-	return &Storage{db: db, log: log}, nil
+	return &Storage{DB: db, log: log}, nil
 }
 
 func (s *Storage) Close() error {
-	return s.db.Close()
+	return s.DB.Close()
 }

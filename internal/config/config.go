@@ -15,10 +15,11 @@ type Config struct {
 }
 
 type ServerConfig struct {
-	Port int `yaml:"port" env-default:"8080"`
+	Port uint32 `yaml:"port" env-default:"8080"`
 	Host string `yaml:"host" env-default:"localhost"`
 	Timeout time.Duration `yaml:"timeout" env-default:"10s"`
 	IdleTimeout time.Duration `yaml:"idle_timeout" env-default:"60s"`
+	BaseUrl string `yaml:"base_url" env-default:"/api/v1"`
 }
 
 type DBConfig struct {
