@@ -2,13 +2,13 @@ package server
 
 import (
 	"context"
-	"database/sql"
 	"fmt"
 	"log/slog"
 	"net/http"
 	"url-shortener/internal/api"
 	"url-shortener/internal/config"
 	"url-shortener/internal/service"
+	"url-shortener/internal/storage"
 )
 
 type Server struct {
@@ -18,12 +18,12 @@ type Server struct {
 	Log *slog.Logger
 }
 
-func NewServer(cfg *config.Config, log *slog.Logger, db *sql.DB) *Server {
-	shortener := service.NewShortener(db)
+func NewServer(cfg *config.Config, log *slog.Logger, storage *storage.Storage) *Server {
+	shortener := service.NewShortener(storage)
 	wrp := api.NewURLServerWrapper(shortener)
 
 	mux := http.NewServeMux()
-	mux.HandleFunc(cfg.Server.BaseUrl + "/url", wrp.GetURL)
+	mux.HandleFunc(cfg.Server.BaseUrl + "/url", wrp.HandleUrl)
 
 	http := &http.Server{
 		Addr:	fmt.Sprintf("%s:%d", cfg.Server.Host, cfg.Server.Port),

@@ -1,5 +1,5 @@
 package dto
 
 type URL struct {
-	URL string
+	URL string `json:"url"`
 }

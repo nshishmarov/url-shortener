@@ -33,7 +33,7 @@ func main() {
 	ctx , cancel := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT)
 	defer cancel()
 
-	server := server.NewServer(cfg, log, storage.DB)
+	server := server.NewServer(cfg, log, storage)
 
 	go func() {
 		<-ctx.Done()
